@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "task-tracker-cli"
+version = "0.1.0"
+description = "A simple command-line task tracker (roadmap.sh project)"
+authors = ["Anthony Sung <sungpinyue@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "task_cli", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+task-cli = "task_cli.app:main"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+flake8 = "^7.3.0"
+pytest = "^8.4.1"
+pytest-watch = "^4.2.0"
+autoflake = "^2.3.1"
+isort = "^6.0.1"
+flake8-isort = "^6.1.2"
+pytest-cov = "^6.2.1"
