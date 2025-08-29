@@ -1,3 +1,4 @@
+import pytest
 from pathlib import Path
 
 from config import FILENAME
@@ -44,3 +45,7 @@ def test_mark_timestamp(tmp_path: Path):
     marked_task = mark_status(task_id=task_id, status=status, path=test_file)
 
     assert task.updated_at < marked_task.updated_at
+
+def test_mark_should_raise_if_id_not_found(tmp_path):
+    with pytest.raises(ValueError, match="Cannot find task with id:"):
+        mark_status(task_id=999, status=TaskStatus.DONE, path=tmp_path / FILENAME)

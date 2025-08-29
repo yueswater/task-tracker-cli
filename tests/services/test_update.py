@@ -1,3 +1,4 @@
+import pytest
 from pathlib import Path
 
 from config import FILENAME
@@ -22,3 +23,7 @@ def test_update_existing_task_description(tmp_path: Path):
     assert old_task.id == new_task.id
     assert old_task.description != new_task.description
     assert old_task.updated_at < new_task.updated_at
+
+def test_update_should_raise_if_id_not_found(tmp_path):
+    with pytest.raises(ValueError, match="Cannot find task with id:"):
+        update_task(task_id=999, new_description="Does not exist", path=tmp_path / FILENAME)
