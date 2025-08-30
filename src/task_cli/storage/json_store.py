@@ -19,7 +19,7 @@ def load_tasks(path: Optional[Path] = None) -> List[Task]:
         target.write_text("[]", encoding="utf-8")
         return []
 
-    tasks = []
+    tasks: List[Task] = []
     try:
         with open(target, "r", encoding="utf-8") as f:
             raw_data = json.load(f)
